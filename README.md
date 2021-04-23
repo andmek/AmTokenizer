@@ -1,0 +1,2 @@
+# AmTokenizer
+Amharic Tokenizer
