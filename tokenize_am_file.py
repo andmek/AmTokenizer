@@ -1,5 +1,6 @@
 
 from mosestokenizer import MosesTokenizer
+from transliteration import ethiopic2latin
 
 
 def process_text(fname):
@@ -8,9 +9,9 @@ def process_text(fname):
     with open(fname) as file_in:
         for line in file_in:
             if len(line) > 2:
-                line = line.replace("።", ".").replace("፣", ",").replace("፥", ":").replace("፤", ";").replace("፦", "-").replace("፡", " ").replace("፧", "?")
+                line = ethiopic2latin(line)
                 tok_sent = ' '.join(tokenize(line))
-                txt += tok_sent.replace(".", "።").replace(",", "፣").replace(":", "፥").replace(";", "፤").replace("-", "፦") + '\n'
+                txt += tok_sent + '\n'
     file_in.close()
     return txt
 
@@ -23,7 +24,7 @@ def main():
 
     txt = process_text("")
 
-    file_out = open("", 'w')
+    file_out = open("", "w")
     file_out.write(txt)
     file_out.close()
 
